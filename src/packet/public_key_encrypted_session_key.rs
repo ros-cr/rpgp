@@ -405,7 +405,7 @@ impl PublicKeyEncryptedSessionKey {
     /// eB - the ECDH ephemeral public key decoded from the PKESK
     /// k - the proxy transformation parameter retrieved from storage
     #[cfg(feature = "draft-wussler-openpgp-forwarding")]
-    fn transform_ecdh_ephemeral(
+    pub fn transform_ecdh_ephemeral(
         eb: [u8; 32],
         k: crate::types::ForwardingProxyParameter,
     ) -> Result<[u8; 32]> {

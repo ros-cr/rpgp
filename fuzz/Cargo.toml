@@ -16,6 +16,7 @@ rand_chacha = "0.3"
 # needed for a test case
 buffer-redux = { version = "1.0.0", default-features = false }
 
+arbitrary = { version = "1", features = ["derive"], default-features = false }
 
 [dependencies.pgp]
 path = ".."
@@ -24,6 +25,17 @@ path = ".."
 # enable overflow checks to catch integer overflow and underflow behavior
 # with this, the --debug profile is not needed for testing
 overflow-checks = true
+
+[features]
+# special mode to synthesize/seed some fuzz target inputs differently
+fuzzer_seed1 = []
+# special mode with verbose stdout handling, intended for fuzz test development
+fuzzer_verbose1 = []
+
+# passthrough of some rpgp feature flags
+# some fuzz harnesses may require one or multiple of those flags
+draft-pqc = ["pgp/draft-pqc"]
+draft-wussler-openpgp-forwarding = ["pgp/draft-wussler-openpgp-forwarding"]
 
 [[bin]]
 name = "1_message_from_bytes"
@@ -129,3 +141,27 @@ path = "fuzz_targets/15_dearmor_parser.rs"
 test = false
 doc = false
 bench = false
+
+[[bin]]
+name = "31_draft_wussler_forwarding_message_decrypt"
+path = "fuzz_targets/31_draft_wussler_forwarding_message_decrypt.rs"
+test = false
+doc = false
+bench = false
+required-features = ["draft-wussler-openpgp-forwarding"]
+
+[[bin]]
+name = "32_draft_wussler_forwarding_compute_proxy_parameter"
+path = "fuzz_targets/32_draft_wussler_forwarding_compute_proxy_parameter.rs"
+test = false
+doc = false
+bench = false
+required-features = ["draft-wussler-openpgp-forwarding"]
+
+[[bin]]
+name = "33_draft_wussler_forwarding_transform_ecdh"
+path = "fuzz_targets/33_draft_wussler_forwarding_transform_ecdh.rs"
+test = false
+doc = false
+bench = false
+required-features = ["draft-wussler-openpgp-forwarding"]

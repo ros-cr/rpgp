@@ -255,7 +255,7 @@ impl SecretSubkey {
     /// Output:
     /// k = dB/dC mod n
     #[cfg(feature = "draft-wussler-openpgp-forwarding")]
-    fn compute_proxy_parameter(
+    pub fn compute_proxy_parameter(
         mut db: [u8; 32],
         mut dc: [u8; 32],
     ) -> Result<crate::types::ForwardingProxyParameter> {
