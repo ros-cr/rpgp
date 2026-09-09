@@ -34,7 +34,7 @@ fuzzer_verbose1 = []
 
 # passthrough of some rpgp feature flags
 # some fuzz harnesses may require one or multiple of those flags
-draft-pqc = ["pgp/draft-pqc"]
+draft-pqc = ["pgp/pqc"]
 draft-wussler-openpgp-forwarding = ["pgp/draft-wussler-openpgp-forwarding"]
 
 [[bin]]
